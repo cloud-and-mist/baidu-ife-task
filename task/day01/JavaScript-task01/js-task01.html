@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //任务一
+        console.log('------------任务1------------');
+        let weight = 48;
+        let height = 1.58;
+        let BMI;
+        BMI = Math.round(weight / (height * height));
+        console.log('您的BMI值为'+BMI);
+        //任务二
+        console.log('------------任务2------------');
+        function calculateSum(price,vip){
+            if(vip){
+                price = price*0.98; //先判断是否为vip
+            }
+            if(price >= 300){
+                return price-30; //300-30
+            }
+            else if(price >= 200){
+                return price-10; //200-10
+            }else if(price >= 100){
+                return price-5; //100-5
+            }
+            return price;
+        }
+        console.log(calculateSum(300,false)) 
+        console.log(calculateSum(300,true)) 
+        //任务3
+        console.log('------------任务3------------');
+        function isNumeric(num){
+            if(typeof num !== 'number'){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        //测试用例
+        console.log(isNumeric('0')) // ->false
+        console.log(isNumeric(0)) // ->true
+        console.log(isNumeric(null)) // ->false
+        console.log(isNumeric("")) // ->false
+        console.log(isNumeric(" ")) // ->false
+        //任务4
+        console.log('------------任务4------------');
+        function isUndefined(arg){
+            if(typeof arg === 'undefined'){
+                return true;
+            }
+            else {
+                type = Object.prototype.toString.call(arg).slice(8,-1);//toString的结果为字符串,例如[object Object]，利用slice将后面的剥离出来单独判断
+                if(type === 'String' || type === 'Array')
+                {return arg.length==0? true:false;}
+                else if(type === 'Object')
+                {return Object.keys(o).length === 0?true:false;}
+                else if(type === 'Null'){
+                    return false;
+                }
+            }
+        }
+        function isNull(arg){
+            //用!arg的确可以判空，但是undefined和0的也会包括进来，因此要去除undefined的情况
+            if(!arg && typeof arg !== 'undefined' && arg !== 0){ 
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        // 测试用例
+        var expUndefined = undefined;
+        var expNull = null; 
+        var expZero = 0;
+        var a;
+        var o = new Object();
+        console.log(isUndefined(expUndefined)); // ->true
+        console.log(isUndefined(expNull)); // ->false
+        console.log(isUndefined(a)); // ->true
+        console.log(isUndefined(o)); // ->true
+        console.log(isNull(expUndefined)); // ->false
+        console.log(isNull(expNull)); // ->true
+        console.log(isNull(expZero)); // ->false
+        console.log(isNull(a)); // ->false
+        console.log(isNull(o)); // ->false
+
+
+
+
+    </script>
+    
+</body>
+</html>
