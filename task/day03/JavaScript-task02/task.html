@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //task01
+    function showMessage1(){
+        return '\"hello,stranger!\"';
+    }
+    console.log(showMessage1());
+    //task02
+    function showMessage2(name){
+        return `"hello!${name}!"`;
+    }
+    document.write(showMessage2('Alice'));
+    //task03
+    //最开始延时不起作用，因为setTimeout中如果第一个参数是函数且没有加双引号，那么setTimeout直接调用了该方法，加了双引号延时效果出现
+    let showMessage3 = (name) => {document.write(`"hello!${name}!"`);};
+    setTimeout("showMessage3('John')",1000);
+
+    //task04
+    function temperatureBodyDetection(success,fail){
+        const temperature = prompt('请输入您的体温');
+        if(temperature <= 37 && temperature >= 36)
+            success() //执行成功函数
+        else
+            fail() //执行失败函数
+    }
+    const success = () => {alert('体温正常，打卡成功！')};
+    const fail = () => {alert('体温异常，打卡失败！')};
+    setTimeout("temperatureBodyDetection(success,fail)",2000)
+    //延时2s后调用打卡函数
+
+
+    </script>
+    
+</body>
+</html>

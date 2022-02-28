@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <title>Forms Review</title>
+  </head>
+  <body>
+    <section id="overlay">
+
+      <p id="logo">Order your milktea!</p>
+      <hr>
+      <form action="submission.html" method="POST">
+          <!-- 没有通过判定的输入框为红色，通过判定的输入框为绿色 -->
+          <div>
+            <label for="flavor">你想要什么口味的奶茶？</label>
+            <input type="text" id="flavor" name="flavor" required minlength="2" maxlength="10">
+          </div>
+          <hr>
+          <div>
+              <label for="cup_num">你想要几杯？</label>
+              <input type="number" id="cup_num" name="cup_num" required min="1" max="4">
+          </div>
+          <hr>
+          <div>
+              <label for="sugar_content">你需要的糖分量</label>
+              <!-- 这里如果用label超级奇怪，直接写无糖全糖即可 -->
+              无糖
+              <input type="range" id="sugar_content" name="sugar_content" min="1" max="5" step="1">
+              全糖
+          </div>
+          <hr>
+          <div>
+              <label>你想要什么顶料？</label>
+              <input type="checkbox" id="up_addition" name="up_addition" value="ice-cream">冰淇淋
+              <input type="checkbox" id="up_addition" name="up_addition" value="milk-cover">奶盖
+              <input type="checkbox" id="up_addition" name="up_addition" value="cocoa-powder ">可可粉
+          </div>
+          <hr>
+          <div>
+              <label>你需要加冰吗？</label>
+              <input type="radio" name="ice" value="ice-yes">yes
+              <input type="radio" name="ice" value="ice-no">no
+          </div>
+          <hr>
+          <div>
+              <label for="addition">你需要加什么料</label>
+              <select id="addition">
+                  <option value="pearl">珍珠</option>
+                  <option value="Boba">波霸</option>
+                  <option value="pudding">布丁</option>
+              </select>
+          </div>
+          <hr>
+          <div>
+              <label for="size">你要什么规格？</label>
+              <select id="size">
+                  <option value="min">小杯</option>
+                  <option value="medium">中杯</option>
+                  <option value="max">大杯</option>
+              </select>
+          </div>
+          <hr>
+          <div>
+              <label for="else">您还有别的什么要求吗？</label>
+              <textarea id="else" name="else" rows="5" cols="50"></textarea>
+          </div>
+          <hr>
+          <div>
+              <label for="telephone">您的联系方式</label>
+              <input type="tel" id="telephone" name="telephone" required pattern="1[0-9]{10}">
+          </div>
+          <hr>
+          <input type="submit" value="Submit">
+      </form> 
+    </section>
+  </body>
+</html>
