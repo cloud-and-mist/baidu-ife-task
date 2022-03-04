@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.task3{
+    display: grid;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 100px 100px 100px;
+}
+.task3 a{
+    display: flex;
+    text-decoration: none;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.task3 a.default{
+    background-color: white;
+    border: 2px solid rgb(232, 234, 236);
+    color: rgb(106, 108, 110);
+}
+.task3 a.default:hover{
+    background-color: rgb(232, 234, 236);
+}
+.task3 a.danger{
+    background-color: rgb(237, 87, 102);
+    color: white;
+}
+.task3 a.danger:active{
+    background-color: rgb(161, 7, 22);
+}
+.task3 a.success{
+    background-color: rgb(30, 122, 185);
+    color: white;
+}
+.task3 a.success:active{
+    background-color: rgb(17, 83, 128);
+}
+.task3 a.info{
+    background-color: white;
+    border:2px solid rgb(68, 203, 205);
+    color: rgb(68, 203, 205);
+}
+.task3 a.info:hover{
+    background-color:rgb(68, 203, 205);
+    color: white;
+}
+.task3 a.warning{
+    background-color: white;
+    border: 2px solid rgb(249, 186, 118);
+    color: rgb(249, 186, 118);
+}
+.task3 a.warning:hover{
+    background-color: rgb(249, 186, 118);
+    color: white;
+}
+.task3 a.primary{
+    background-color: rgb(31, 179, 147);
+    border-radius: 50px;
+    color: white;
+}
+.task3 a.primary:active{
+    background-color:rgb(17, 131, 106) ;
+}

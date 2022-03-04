@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            font-family: 'Architects Daughter', cursive;
+            border-top: 20px solid rgb(4, 169, 243);
+        }
+        .moby{
+            margin: 50px auto;
+            width: 700px;
+            height: 700px;
+            display: flex;
+        }
+        .moby h2{
+            writing-mode:vertical-lr; /*垂直*/
+            font-size: 90px;
+            color:rgb(4, 169, 243) ;
+            display: block;
+        }
+        .moby div p{
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        /* 这里有没有其他方法显示隐藏，我的这种方法好刻意... */
+        .moby div p.hidden{
+            display: -webkit-box; 
+            -webkit-box-orient: vertical; /* 垂直排列 */
+            -webkit-line-clamp: 1; /* 限制在一个块元素显示的文本的行数 */
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="moby">
+        <h2>Title Loomings</h2>
+        <!-- 加了一个div为了使用flex两栏布局，有没有更好的办法可以实现左边一列右边两行呢？ -->
+        <div>
+            <p>Call me Ishmael. Some years ago- never mind how long precisely- having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off- then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.</p>
+      
+            <p class="hidden">There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs- commerce surrounds it with her surf. Right and left, the streets take you waterward. Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land. Look at the crowds of water-gazers there.</p>
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 任务1-2 -->
+    <label>请输入您的身高:</label><input type="text" >
+    <br>
+    <label>请输入您的体重:</label><input type="text" >
+    <br>
+    <button class="bmi">开始测量您的体型</button>
+    <p id="result"></p>
+    <!-- 任务3 -->
+    <label>请输需要判断的水仙花数(三位数):</label><input type="text" class="task3-input">
+    <br>
+    <button class="narcissus">开始判断</button>
+
+    <script>
+        const btn1 = document.querySelector('.bmi');
+        const result = document.querySelector('#result');
+        btn1.addEventListener('click',function(){
+            let height = document.querySelectorAll('input')[0].value;
+            let weight = document.querySelectorAll('input')[1].value;
+            // BMI1(height,weight);
+            BMI2(height,weight);
+        })
+        //task1 - if语句
+        function BMI1(height,weight){
+            let BMI = weight / (height * height);
+            if(BMI < 18.5){
+                result.innerHTML = '您是偏瘦体型，可以适当增肥咯';
+            }else if(BMI < 25){
+                result.innerHTML = '您是标准体型，保持的不错哟';
+            }else if(BMI < 28){
+                result.innerHTML = '您是微胖体型，可以多吃粗粮，让饮食结构更加健康吧！';
+            }else if(BMI < 32){
+                result.innerHTML = '您是肥胖体型，管住嘴迈开腿开始减肥吧！';
+            }else{
+                result.innerHTML = '您是过重体型，已经影响健康了，需要重视自己的饮食管理了';
+            }
+        }
+        //task2 - switch语句
+        //利用switch语句进行范围判断
+        function BMI2(height,weight){
+            let BMI = weight / (height * height);
+            switch(true){
+                case (BMI < 18.5):
+                    result.innerHTML = '您是偏瘦体型，可以适当增肥咯';
+                    break;
+                case (BMI < 25):
+                    result.innerHTML = '您是标准体型，保持的不错哟';
+                    break;
+                case (BMI < 28):
+                    result.innerHTML = '您是微胖体型，可以多吃粗粮，让饮食结构更加健康吧！';
+                    break;
+                case (BMI < 32):
+                    result.innerHTML = '您是肥胖体型，管住嘴迈开腿开始减肥吧！';
+                    break;
+                default:
+                    result.innerHTML = '您是过重体型，已经影响健康了，需要重视自己的饮食管理了';
+            }
+        }
+        //task3 - 水仙花数
+        const btn2 = document.querySelector('.narcissus');
+        btn2.addEventListener('click',function(){
+            let num = document.querySelector('.task3-input').value;
+            if(isNaN(Number(num))){
+                alert('请输入数字！');
+            }else if(num.length > 3){
+                alert('请输入3位数');
+            }else{
+                numDaffodils(num);
+            }
+        })
+        function numDaffodils(num) {
+            let sum = 0;
+             for(let i = 0;i<num.length;i++)
+             {
+                sum += Number(num[i])**3;
+             }
+             if(sum == Number(num)){
+                 alert(`${num}是水仙花数`);
+             }else{
+                 alert(`${num}不是水仙花数`);
+             }
+        }
+
+    </script>
+</body>
+</html>
