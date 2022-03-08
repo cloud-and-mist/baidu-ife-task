@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label>偏移:</label><input type="text" name="offset" size=5 value=3><br>
+        <label>明文:<label></label><input type="text" name="plain" size=50 value="This is a test."><br>
+        <label>密文:</label><input type="text" name="enc" size=50><br>
+        <input type="button" value="加密" class="encrypt">&nbsp;
+        <input type="button" value="解密" class="decrypt">
+        <script>
+            const offset =  document.getElementsByName('offset')[0];
+            const plain = document.getElementsByName('plain')[0];
+            const enc = document.getElementsByName('enc')[0];
+            const btn_enc = document.querySelector('.encrypt');
+            const btn_dec =  document.querySelector('.decrypt');
+            let start_1 = 'a'.codePointAt(0);
+            let end_1 = 'z'.codePointAt(0);
+            let start_2 = 'A'.codePointAt(0);
+            let end_2 = 'Z'.codePointAt(0);
+            let temp;
+            function encrypt(offset,str){
+                //这里实现加密算法
+                let result = '';
+                for(let i = 0;i < str.length;i++){
+                    temp = str[i].codePointAt(0);
+                    if(temp >= start_1 && temp <= end_1){
+                        temp = start_1 + (temp - start_1 + offset) % 26;//算出偏移后的ascⅡ值
+                        result+=String.fromCharCode(temp);
+                    }
+                    else if(temp >= start_2 && temp <= end_2){
+                        temp = start_2 + (temp - start_2 + offset) % 26;
+                        result+=String.fromCharCode(temp);
+                    }else{
+                        result+=String.fromCharCode(temp);
+                    }
+                }
+                enc.value = result;
+            }
+            function decrypt(offset,str){
+                //这里实现解密算法
+                let result = '';
+                for(let i = 0;i < str.length;i++){
+                    temp = str[i].codePointAt(0);
+                    if(temp >= start_1 && temp <= end_1){
+                        temp = end_1 - (end_1 - temp + offset) % 26;
+                        result+=String.fromCharCode(temp);
+                    }
+                    else if(temp >= start_2 && temp <= end_2){
+                        temp = end_2 - (end_2 - temp + offset) % 26;
+                        result+=String.fromCharCode(temp);
+                    }else{
+                        result+=String.fromCharCode(temp);
+                    }
+                }
+                plain.value = result;
+            }          
+            btn_enc.addEventListener('click',function(){encrypt(Number(offset.value),plain.value)});
+            btn_dec.addEventListener('click',function(){decrypt(Number(offset.value),enc.value)})
+
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>请输入num1：</label><input type="text" ><br>
+    <label>请输入num2：</label><input type="text" ><br>
+    <button>相加</button><br>
+    <label>结果:</label><input id="result" type="text" >
+    
+    <script>
+        const input_num1 = document.querySelectorAll('input')[0];
+        const input_num2 = document.querySelectorAll('input')[1];
+        const result = document.querySelector('#result');
+        const btn = document.querySelector('button');
+
+        btn.addEventListener('click',function(){
+            let num1 = input_num1.value;
+            let num2 = input_num2.value;
+            if(!judgeNum(num1) || !judgeNum(num2)){
+                alert('只能包含数字0-9,并且不能以0开头,');
+            }else{
+                result.value = largeNumAdd(num1,num2);
+            }
+        })
+
+        function judgeNum(num){
+            let flag = true;
+            if(num.charAt(0) == '0' || num.charAt(0) == ''){
+                flag = false;
+            }
+            for(let i = 0;i < num.length;i++){
+                if(isNaN(num.charAt(i)-'0')){
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        //一整个大不会，参考了leetcode题解
+        function largeNumAdd(num1, num2) {
+            // 在这里实现大数相加函数
+            let i = num1.length -  1;
+            let j = num2.length - 1;
+            let add = 0; //代表进位
+            let ans = [];
+            //判断条件是存在一个数位数比另一个数多的情况
+            while(i >= 0 || j >= 0 || add !== 0){
+                let x = i < 0 ? 0:num1.charAt(i)-'0'; //<0相当于补零操作
+                let y = j < 0 ? 0:num2.charAt(j)-'0';
+                let result = x + y + add;
+                if( result >= 10 ) {
+                    add = 1;
+                    result = result % 10;
+                }else{
+                    add = 0; //这里一定要让add变成0不然会出现死循环
+                }
+                ans.push(result);
+                i--;
+                j--;
+           }
+            return ans.reverse().join('');
+        }
+
+        //测试用例  
+        console.log(largeNumAdd("11", "123"));//->"134"
+        console.log(largeNumAdd("235656","746433225")); //->""746668881""
+        console.log(largeNumAdd("3456786543355","222222234567778"));//->"225679021111133"
+    </script>
+
+</body>
+</html>

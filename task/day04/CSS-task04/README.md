@@ -24,3 +24,6 @@
 - [`value`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/ol#attr-value) 属性允许设置列表项指定数值：设置了value后，列表的序号会变成value的值
 - `ul > li { display:inline-block; }`可以让列表横向展示
 
+## 遇到的问题
+
+- 比如看到案例中，a标签直接设置了padding值，可以把文字挤到居中的位置，那是因为此时没有对a标签设置宽高

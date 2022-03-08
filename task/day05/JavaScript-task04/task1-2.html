@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //task1.1 - 首字母大写函数
+        function capitalize(str) {
+            if(!str) return 'error'; //判断空字符
+            let low = str.toLowerCase(); //全部先转换成小写
+            low =  low[0].toUpperCase() + low.slice(1); //单独将首字母大写
+            return low;
+        }
+        // 测试用例
+        console.log(capitalize("SArah")); // "Sarah"
+        console.log(capitalize("amy")); // "Amy"
+        console.log(capitalize("jaCkSon")); // "Jackson"
+        console.log(capitalize(""));//error
+
+        //task1.2 - 返回接收到的名称参数的最后一个字符
+        function getLastCharacter(str) {
+            if(!str) return 'error'; //判断空字符
+            let result = str.slice(str.length-1);
+            return result;
+        }
+        // 测试用例
+        console.log(getLastCharacter("SArah")); // "h"
+        console.log(getLastCharacter("amy")); // "y"
+        console.log(getLastCharacter("jaCkSon")); // "n"
+
+        //task1.3 - 字符串跳过前面 num 个字符，接收到的从参数 num 位置到最后一个字母的字符串。
+        function skipFirstCharacter(str,num) {
+            if(!str) return 'error'; //判断空字符
+            let result = str.slice(num);
+            return result;
+        }
+        // 测试用例
+        console.log(skipFirstCharacter("Javascript",2)); // "vascript"
+        console.log(skipFirstCharacter("Hello",1)); // "ello"
+
+        //task1.4 - 实现字符串链接
+        function concatString(firstStr, lastStr) {
+            let result =  firstStr + ' ' + lastStr;
+            return result;
+        }
+        // 测试用例
+        console.log(concatString("Jennie", "Kim")); // "Jennie Kim"
+        console.log(concatString("Lisa", "La")); // "Lisa La"
+
+        //task1.5 - 运用字符串插值完成函数sayHi，使其将参数变量名插入到字符串中"Hello name"
+        function sayHi(name) {
+            return `Hello ${name}`;
+        }
+        //测试用例
+        console.log(sayHi("Amy")); // "Hello Amy"
+
+        //task1.6 - 实现一个字符串头尾去除空格的函数 diyTrim
+        function diyTrim(str) {
+            let result = str.trim();//去除空格
+            return result;
+        }
+
+        // 测试用例
+        console.log(diyTrim(' a f b    ')); // ->a f b
+        console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+        console.log(diyTrim('1    ')); // ->1
+        console.log(diyTrim('　　f')); // ->f
+        console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+        console.log(diyTrim(' ')); // ->
+        console.log(diyTrim('　')); // ->
+        console.log(diyTrim('')); // ->
+
+        //task1.7 - 编码实现去除字符串连续重复
+        function removeRepetition(str) {
+            let result = str.charAt(0); //如果使用str[0]那空字符会显示undefined
+            let fast = 1;
+            while(fast < str.length){
+                if(str[fast] !== str[fast-1]){
+                    result+=str[fast];
+                }
+                fast++;
+            }
+            return result;
+            //本来想用快慢指针做，结果忽略了字符串是不可以进行内部更改的
+            // let slow = 1;
+            // let fast = 1;
+            // while(fast < str.length){
+            //     if(str[fast] !== str[fast-1]){
+            //         str[slow] = str[fast];
+            //         slow++
+            //     }
+            //     fast++;
+            // }
+            // return str.slice(0,slow);
+        }
+        // 测试用例
+        console.log(removeRepetition("aaa")); // ->a
+        console.log(removeRepetition("abbba")); // ->aba
+        console.log(removeRepetition("aabbaabb")); // ->abab
+        console.log(removeRepetition("")); // ->
+        console.log(removeRepetition("abc")); // ->abc
+
+        //task1.8 - 编写函数 isPalindromicString 实现回文字符串的判断
+        function isPalindromicString(str) {
+            let start = 0;
+            let end =  str.length - 1;
+            let flag = true;
+            while(start < str.length / 2){
+                if(str[start] !==  str[end]){
+                    flag = false;
+                    break;
+                }
+                start++;
+                end--;
+            }
+            return flag;
+        }
+        // 测试用例
+        console.log(isPalindromicString("aaa")); // ->true
+        console.log(isPalindromicString("madam")); // ->true
+        console.log(isPalindromicString("hello")); // ->false
+    
+
+    </script>
+</body>
+</html>

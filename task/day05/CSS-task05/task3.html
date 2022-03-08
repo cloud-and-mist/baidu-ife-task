@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-width: 500px;
+        }
+        header{
+            width: 100%;
+            height: 100px;
+            background-color: red;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+        }
+        footer{
+            width: 100%;
+            height: 100px;
+            background-color: red;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+        }
+        main{
+            /* 为了创造一个块级上下文BFC，计算BFC的高度时，浮动元素也参与计算，目的是撑起来中间 */
+            overflow: hidden; 
+            padding:0 100px 0 100px;
+        }
+        main .left,.middle,.right{
+            float: left;
+            position: relative;
+            text-align: center;
+            line-height: 300px;
+            height: 300px;
+        }
+        main .left{
+            left: -100px;
+            margin-left: -100%;
+            width: 100px;
+            background-color: aquamarine;
+        }
+        main .middle{
+            width: 100%;
+            background-color: bisque;
+        }
+        main .right{
+            margin-left: -100px;
+            left:100px;
+            /* 后面我发现上面两行直接用margin-right:-100px取代也可以实现这个效果，但是上面两行的写法比较直观 */
+            width: 100px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <!-- 圣杯布局 -->
+    <header>头部</header>
+    <main>
+        <!-- middle要放在最上面！因为要优先渲染 -->
+        <div class="middle">中间</div>
+        <div class="left">左</div>
+        <div class="right">右</div>
+    </main>
+    <footer>尾部</footer>
+</body>
+</html>
