@@ -1,0 +1,157 @@
+*{
+    margin: 0; padding: 0; box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+.head{
+    width: 100%;
+    height: 412px;
+    background:linear-gradient(rgba(125, 117, 179,1),rgba(125, 117, 179,0.5)),url(header_pic.jpg) no-repeat center center ;
+    position: relative;
+}
+/* 头部导航栏样式 */
+.head .nav{
+    width: 100%;
+    height: 44px;
+    overflow: hidden;
+}
+/* 导航栏左侧 */
+.nav .left{
+    float: left;
+    margin-left: 23px;
+}
+/* 导航栏右侧 */
+.nav .right{
+    float:right;
+    margin-right:32px ;
+}
+.nav a{
+    margin: 20px 13px 0 0;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 2.8px;
+    height: 25px;
+    line-height: 25px;
+    float: left;
+}
+.nav .left a:nth-child(1){
+    color: #857abf;
+    background-color: white;
+    padding:0 7px;
+}
+/* 头部内容部分 */
+.head .head-content{
+    width: 1218px;
+    height: 368px;
+    margin: 0 auto;
+}
+.head .head-content .head-content-title{
+    margin-top: 60px;
+    color: white;
+    font-size: 70px;
+    float: left;
+}
+.head .head-content .head-content-title::after{
+    content: ' ';
+    height: 2px;
+    width: 1218px;
+    background-color: white;
+    float: left;
+    margin: 40px 0;
+}
+.head .head-content .head-content-description{
+    color: white;
+    letter-spacing: 2px;
+    line-height: 33px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.head .head-content .head-content-description *{
+    float: left;
+}
+/* 网页内容主体部分 */
+main{
+    overflow: hidden;
+}
+main .img-left{
+    color: white;
+    height: 516px;
+    width: 100%;
+    background-color: #2e3450;
+    float: left;
+}
+main .img-right{
+    color: white;
+    height: 516px;
+    width: 100%;
+    background-color: #333856;
+    float: left;
+}
+main img{
+    float: left;
+}
+.main-content{
+    height: 100%;
+    width: calc(100% - 576px);
+    padding: 115px 95px 0 55px;
+    float: left;
+}
+.main-content .content-title{
+    letter-spacing: 1.5px;
+    font-size: 20px;
+    position: relative;
+    font-weight: bold;
+}
+.main-content .content-title::after{
+    content: '';
+    height: 2px;
+    width: 178px;
+    background-color: white;
+    position: absolute;
+    left: 0px;
+    bottom: -20px;
+}
+.main-content .content-description{
+    margin:70px 0 40px 0;
+    line-height: 35px;
+}
+.main-content .learn-more{
+    color: white;
+    font-size: 11px;
+    letter-spacing: 2px;
+    float: left;
+    padding: 15px 10px;
+    border: 2px solid white;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+.bottom-content{
+    width: 100%;
+    background-color:#2a2f4a ;
+    float: left;
+    height:432px ;
+    color: white;
+}
+.bottom-content>.main-content{
+    width: 100%;
+    padding:88px 95px 0 112px;
+}
+footer{
+    width: 100%;
+    height: 166px;
+    background-color: #242a43;
+    color: #484c63;
+    font-size: 14px;
+    padding:88px 95px 0 112px ;
+}
+footer span{
+    margin-right: 14px;
+}
+footer span>a{
+    padding-left: 6px;
+    color: #484c63;
+    text-decoration: underline dotted;
+}

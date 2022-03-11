@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let scores = ['88','90','100','45','60','98','32','99','80'];
+
+        //返回学生的总分数
+        function getTotalScore(scores){
+            let sum = scores.reduce((acc,value)=>acc+Number(value),0);
+            return sum;
+        }
+
+        //返回学生的平均分
+        function getAverageScore(scores){
+            let sum = getTotalScore(scores);
+            let average = sum / scores.length;
+            return average.toFixed(2);
+        }
+
+        //返回没有及格的分数
+        function getFailScores(scores){
+            let failScores = scores.filter(score => score < 60);
+            return failScores;
+        }
+
+        //给学生的每一科目都加五分，如果分数超过了100，就取100分
+        function getAddFiveScores(scores){
+            let addFiveScores = scores.map(function(score){
+                score =  Number(score) + 5;
+                return score > 100 ? 100 : score;
+            })
+            return addFiveScores;
+        }
+
+        //学生奖学金和每一门分数相关，只要一门分数超过90分，就可以得到100元奖励，算出学生可以得到奖金总数
+        function getPrize(scores){
+            let prize = scores.reduce(function(acc,value){
+                let p = value > 90 ? 100 : 0;
+                return acc+p;
+            },0);
+            return prize;
+        }
+
+
+        console.log(getTotalScore(scores));
+        console.log(getAverageScore(scores));
+        console.log(getFailScores(scores));
+        console.log(getAddFiveScores(scores));
+        console.log(getPrize(scores));
+
+
+
+    </script>
+</body>
+</html>

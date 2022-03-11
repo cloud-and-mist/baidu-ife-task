@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>    
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+    <p id="queue-head"></p>
+    <p id="queue-length"></p>
+
+    <script>
+        const input = document.querySelector('#queue-input');
+        const queue_cont = document.querySelector('#queue-cont');
+        const in_btn = document.querySelector('#in-btn');
+        const out_btn = document.querySelector('#out-btn');
+        const font_btn = document.querySelector('#font-btn');
+        const empty_btn = document.querySelector('#empty-btn');
+        const queue_head = document.querySelector('#queue-head');
+        const queue_length = document.querySelector('#queue-length');
+
+        var queue = ["apple", "pear"];
+
+        function inQueue(){
+            const value = input.value;
+            queue.unshift(value);
+            queue_cont.innerHTML = `队列内容：${queue.join('-&gt;')}`;
+        }
+
+        function outQueue(){
+            queue.pop();
+            queue_cont.innerHTML = `队列内容：${queue.join('-&gt;')}`;
+        }
+
+        in_btn.addEventListener('click',inQueue);
+        out_btn.addEventListener('click',outQueue);
+        font_btn.addEventListener('click',function(){
+            queue_head.innerHTML = `队头元素为：${queue[queue.length-1]}`;
+        })
+        empty_btn.addEventListener('click',function(){
+            if(queue.length == 0){
+                queue_length.innerHTML = '当前队列为空';
+            }else{
+                queue_length.innerHTML = `当前队列长度为${queue.length}`;
+            }
+        })
+
+    </script>
+</body>
+</html>

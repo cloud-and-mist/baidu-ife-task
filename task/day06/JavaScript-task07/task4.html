@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="stack-input" type="text">
+    <p id="stack-cont">栈内容：apple&lt;-pear</p>    
+    <button id="push-btn">进栈</button>
+    <button id="pop-btn">退栈</button>
+    <button id="font-btn">打印栈顶元素内容</button>
+    <button id="empty-btn">判断栈是否为空</button>
+    <p id="stack-head"></p>
+    <p id="stack-length"></p>
+
+
+    <script>
+        const input = document.querySelector('#stack-input');
+        const stack_cont = document.querySelector('#stack-cont');
+        const push_btn = document.querySelector('#push-btn');
+        const pop_btn = document.querySelector('#pop-btn');
+        const font_btn = document.querySelector('#font-btn');
+        const empty_btn = document.querySelector('#empty-btn');
+        const stack_head = document.querySelector('#stack-head');
+        const stack_length = document.querySelector('#stack-length');
+
+        var stack = ["apple", "pear"];
+
+        function pushStack(){
+            const value = input.value;
+            stack.unshift(value);
+            stack_cont.innerHTML = `栈内容：${stack.join('&lt;-')}`;
+        }
+
+        function popStack(){
+            stack.shift();
+            stack_cont.innerHTML = `栈内容：${stack.join('&lt;-')}`;
+        }
+
+        push_btn.addEventListener('click',pushStack);
+        pop_btn.addEventListener('click',popStack);
+        font_btn.addEventListener('click',function(){
+            stack_head.innerHTML = `栈顶元素为：${stack[0]}`;
+        })
+        empty_btn.addEventListener('click',function(){
+            if(stack.length == 0){
+                stack_length.innerHTML = '当前栈为空';
+            }else{
+                stack_length.innerHTML = `当前栈长度为${stack.length}`;
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

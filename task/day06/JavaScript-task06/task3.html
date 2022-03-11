@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var scoreObject = {
+            "Tony": {
+                "Math": 95,
+                "English": 79,
+                "Music": 68
+            }, 
+            "Simon": {
+                "Math": 100,
+                "English": 95,
+                "Music": 98
+            }, 
+            "Annie": {
+                "Math": 54,
+                "English": 65,
+                "Music": 88
+            }
+        }
+        /*
+        console.log(Object.entries(scoreObject));//将对象转成如下数组[['Tony',{...}],['Simon',{...}]...]
+        console.log(Object.keys(scoreObject));//获取对象的keys['Tony','Simon'...]
+        console.log(Object.values(scoreObject));//获取对象的values[{'Math':95...}...]
+        */
+
+        //实现对象转换为数组 -- 暴力做法 其他做法想不出来呜呜
+        function objToArr(obj){
+            var arr = [];
+            for(let i in obj){
+                let arr1 = []
+                arr1.push(i);//先把第一个key push进数组
+                let value = obj[i];//获取该key的value再进行遍历
+                for(let j in value){
+                    arr1.push(value[j]);
+                }
+                arr.push(arr1);
+            }
+            return arr
+        }
+        console.log(objToArr(scoreObject));
+
+
+        var menuArr = [
+            [1, "Area1", -1],
+            [2, "Area2", -1],
+            [3, "Area1-1", 1],
+            [4, "Area1-2", 1],
+            [5, "Area2-1", 2],
+            [6, "Area2-2", 2],
+            [7, "Area1-2-3", 4],
+            [8, "Area2-2-1", 6],
+        ];
+
+        //实现数组转换为对象
+        //太难了，参考了网上的一个做法并进行了修改，改了半天终于成功了TAT
+        function arrToObj(arr){
+            //进行深拷贝，防止连续调用出错
+            const cData = JSON.parse(JSON.stringify(arr)); 
+            //obj存放最终结果
+            var obj = {};
+            const temp_obj = {};
+            //让每一项都放在temp_obj里
+            cData.forEach(item => {temp_obj[item[0]] = {
+                'name':item[1]
+            }});
+            cData.forEach(child => {
+                //这里mapItem指向地址为temp_obj,修改mapItem其实在修改temp_obj
+                const mapItem = temp_obj[child[2]];
+                if(mapItem){
+                    if(!mapItem.subMenu) mapItem.subMenu={};
+                    //其实很好理解，当遍历到[4, "Area1-2", 1]时，为mapItem指向了temp_obj[1],此时为它添加了一个新的属性subMenu,添加subMenu[4]->temp_obj[4]
+                    //遍历到[7, "Area1-2-3", 4]时，为mapItem指向temp_obj[4],此时为它添加了一个新的属性subMenu,添加subMenu[7]->temp_obj[7],这里修改了temp_obj[4]，那么上面temp_obj.subMenu[4]也会随之改变
+                    //循环过程中一直在对temp_obj进行修改，最后只要把最顶上的节点给obj即可
+                    mapItem.subMenu[child[0]] = temp_obj[child[0]];
+                }else{
+                    //将第一层的节点给obj
+                    obj[child[0]] = temp_obj[child[0]]
+                }
+            })
+
+            return obj;
+        }
+
+        console.log(arrToObj(menuArr));
+
+        // arrToObj(menuArr)
+
+        //参考了下面这个做法
+        /*
+        const resData = [
+            { id: '1', label: '动物', parentId: '', icon: '' },
+            { id: '2', label: '狗', parentId: '1', icon: 'icon-chongwutubiao13' },
+            { id: '3', label: '哈士奇', parentId: '2', icon: 'icon-hashiqi' },
+            { id: '4', label: '柯基', parentId: '2', icon: 'icon-keji-' },
+            { id: '6', label: '猫', parentId: '1', icon: 'icon-chongwutubiao04' },
+            { id: '7', label: '植物', parentId: '', icon: '' },
+            { id: '8', label: '微生物', parentId: '', icon: '' },
+            ]
+
+            function transformData(data) {
+                // 深拷贝一份（以防连续调用出错）
+                const cData = JSON.parse(JSON.stringify(data))
+                const map = {}
+                const tData = []
+                // 注意：这里item的引用地址指向cData
+                cData.forEach(item => (map[item.id] = item))
+                cData.forEach(child => {
+                    const mapItem = map[child.parentId]
+                    if (mapItem) {
+                    // 注意：这里mapItem引用地址指向也是指向cData
+                    if (!mapItem.children) mapItem.children = []
+                    mapItem.children.push(child)
+                    } else {
+                    // 顶级节点
+                    tData.push(child)
+                    }
+                })
+                return tData
+                }
+            
+                console.log(transformData(resData));*/
+
+    </script>
+</body>
+</html>
