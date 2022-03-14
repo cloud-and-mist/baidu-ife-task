@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let shoppingList = {
+            hamburger: 12,
+            milk: 5,
+            orange:25,
+            banana:49,
+            ipad:10111,
+        }
+
+        /**
+         * @description 获取购物清单所有的商品
+         * @method getKeys
+         * @param {Object} obj 对象
+         * @return {Array} 返回包含对象所有键名的数组
+         */
+        function getKeys(obj){
+            return Object.keys(obj)
+        }
+        console.log(getKeys(shoppingList));
+
+        /**
+         * @description 获取购物清单所有商品的价格
+         * @method getVals
+         * @param {Object} obj 对象
+         * @return {Array} 返回包含对象所有键值的数组
+         */
+        function getVals(obj){
+            return Object.values(obj)
+        }
+        console.log(getVals(shoppingList));
+        /**
+         * @description 计算购物清单总价
+         * @method sumshoppingList
+         * @param {Object} obj 对象
+         * @return {Number} 返回购物清单的总价
+         */
+        function sumshoppingList(obj){
+            return Object.values(obj).reduce((acc,value)=>{return acc+value},0)
+        }
+        console.log(sumshoppingList(shoppingList));
+
+        /**
+        * @description 给购物清单排序
+        * @method sortshoppingList
+        * @param {Object} obj 对象
+        * @param {Boolean} ascendingOrder 如果值为true，就从小到大排序，值为false，就从大到小排序
+        * @return {Object} 返按从大到小或者从小到大规律排序的购物清单列表
+        */
+        function sortshoppingList(obj,ascendingOrder){
+            if(ascendingOrder){
+                return Object.fromEntries(Object.entries(obj).sort((a,b)=>{return a[1] - b[1]}))
+            }else{
+                return Object.fromEntries(Object.entries(obj).sort((a,b)=>{return b[1] - a[1]}))
+            }
+        }
+        console.log(sortshoppingList(shoppingList,true));
+        console.log(sortshoppingList(shoppingList,false));
+    </script>
+</body>
+</html>

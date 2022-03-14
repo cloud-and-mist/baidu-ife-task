@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //task1 - 建立对象
+        let bankAccount = {
+            name:'Alice',
+            balance:1000,
+            rank:10,
+            interestRatePercent:1,
+            deposit:function(amount){
+                this.balance += amount;
+            },
+            withdraw:function(amount){
+                this.balance -= amount;
+            },
+            printAccoountInfo:function(){
+                return `您的存款为：￥${this.balance}，您的财富排名为：${this.rank},您的银行利率为：${this.interestRatePercent}%`
+            }
+        }
+        //task2 - 添加一个返回账户消息的 printAccountInfo() 方法，在控制台打印出用户的存款，财富排名以及银行利率
+        console.log(bankAccount.printAccoountInfo());
+
+        //task3 - 封装一个函数，检验 bankAcount 是否有 vip 这个属性，如果有就返回 true ，如果没有就返回false
+        function findVip(obj){
+            return 'vip' in obj;
+        }
+        console.log(findVip(bankAccount));
+
+        //task4 - 封装一个函数，遍历 bankAcount 的属性，并且控制台中打印出来
+        function printObj(obj){
+            for (let k in obj){
+                console.log(k);
+            }
+        }
+        printObj(bankAccount)
+        //task5 - 封装一个 isEmpty(obj) 判空函数，当对象没有属性的时候返回 true，否则返回 false。
+        function isEmpty(obj){
+            if(Object.keys(obj) == 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        console.log(isEmpty(bankAccount)); //->false
+        let emptyobj = {};
+        console.log(isEmpty(emptyobj)); //->true
+    </script>
+</body>
+</html>

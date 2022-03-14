@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>随机生成15个数的数组</button>
+    <button>使用冒泡排序</button>
+    <button>使用选择排序法</button>
+    <button>使用插入排序法</button>
+    <button>快速排序法</button>
+    <p id="showArray"></p>
+    <p id="showSortProcess"></p>
+    <script>
+        const btn_create = document.querySelectorAll('button')[0];
+        const btn_bub = document.querySelectorAll('button')[1];
+        const btn_sel = document.querySelectorAll('button')[2];
+        const btn_ins = document.querySelectorAll('button')[3];
+        const btn_quick = document.querySelectorAll('button')[4];
+        const show_array = document.querySelector('#showArray');
+        const show_sort = document.querySelector('#showSortProcess');
+
+        //我有一个问题没有解决：点击排序按钮会修改原数组，为什么？
+
+        const arr = [];
+
+        btn_create.addEventListener('click',function(){
+            arr.splice(0,arr.length); //清空数组
+            for(let i = 0;i < 15;i++){
+                arr.push(Math.floor(Math.random() * 100));
+            }
+            show_array.innerHTML = `排序前数组为：${arr.join('-')}`;
+        });
+
+        btn_bub.addEventListener('click',function(){bubbleSort(arr)})
+        btn_sel.addEventListener('click',function(){selectionSort(arr)})
+        btn_ins.addEventListener('click',function(){InsertionSort(arr)})
+        btn_quick.addEventListener('click',function(){
+            show_sort.innerHTML = '';
+            let final_arr = QuickSort(arr);
+            show_sort.innerHTML += `最终排序结果：${final_arr}`;
+
+        })
+
+
+        function bubbleSort(arr){
+            //实现冒泡排序
+            arr = arr.concat(); //这样才可以避免修改原数组
+            show_sort.innerHTML = '冒泡排序：</br>';
+            for(let i = 0;i < arr.length; i++){
+                let flag = 0;
+                for(let j = 0; j < arr.length - 1 - i;j++){
+                    if(arr[j] > arr[j+1]){
+                        [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+                        flag = 1;
+                    }
+                }
+                if(flag == 0) break;
+                show_sort.innerHTML += `排序第${i}次：${arr.join('-')}`+'</br>';
+            }
+        }
+
+
+        function selectionSort(arr){
+            //实现选择排序法
+            arr = arr.concat();
+            show_sort.innerHTML = '选择排序：</br>';
+            let min_index;
+            for (let i = 0;i < arr.length - 1;i++){
+                min_index = i;
+                for(let j = i+1;j < arr.length;j++){
+                    if(arr[j] < arr[min_index]){
+                        min_index = j;
+                    }
+                }
+                [arr[i],arr[min_index]] = [arr[min_index],arr[i]];
+                show_sort.innerHTML += `排序第${i}次：${arr.join('-')}`+'</br>';
+            }
+        }
+
+
+        function InsertionSort(arr){
+            //实现插入排序法
+            arr = arr.concat();
+            show_sort.innerHTML = '插入排序：</br>';
+            let preIndex,current;
+            for(let i = 1;i < arr.length;i++){
+                preIndex = i - 1;
+                current = arr[i];
+                while(preIndex >= 0 && arr[preIndex] > current){
+                    arr[preIndex+1] = arr[preIndex]; //往前挪一位，为了使current插到合适的位置
+                    preIndex--;
+                }
+                arr[preIndex+1] = current;
+                show_sort.innerHTML += `排序第${i}次：${arr.join('-')}`+'</br>';
+            }
+        }
+        function QuickSort(arr){
+            //实现快速排序法
+            //快速排序的思想就是找到一个基准点，让数组的左边小于基准点，数组的右边大于基准点
+            //再分别对左边右边采用相同的方法进行排序，最后就是排序好的左边+基准+排序好的右边，即为最后答案
+            arr = arr.concat();
+            if(arr.length <= 1){
+                return arr; //递归算法一定要有一个出口
+            }
+            let left = [];
+            let right = [];
+            let basis = arr.splice(0,1); //直接将第一个作为基准点剥出去
+            arr.forEach(function(value){
+                if(value <= basis){
+                    left.push(value);
+                }else{
+                    right.push(value);
+                }
+            });
+            show_sort.innerHTML += `递归排序过程：${left.concat(basis,right)}`+'</br>';
+            return QuickSort(left).concat(basis,QuickSort(right));
+        }
+
+
+    </script>
+
+</body>
+</html>

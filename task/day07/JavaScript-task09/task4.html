@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝
+        // 被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等
+        // 涉及到递归就不是很会写。。。。参考了网上的一个代码
+
+
+        // 如果是原始类型，无需继续拷贝，直接返回
+        // 如果是引用类型，创建一个新的对象，遍历需要克隆的对象，将需要克隆对象的属性执行深拷贝后依次添加到新对象上
+        // 如果有更深层次的对象可以继续递归直到属性为原始类型
+        // 这个链接讲深拷贝讲得很好：https://juejin.cn/post/6844903929705136141
+        function deepClone(src) {
+            if(typeof src === 'object'){
+                let cloneTarget = Array.isArray(src) ? [] : {};
+                for(const key in src){
+                    cloneTarget[key] = deepClone(src[key]);
+                }
+                return cloneTarget;
+            }else{
+                return src;
+            } 
+        }
+
+        // 测试用例：
+        var srcObj = {
+            a: 1,
+            b: {
+                b1: ["hello", "hi"],
+                b2: "JavaScript"
+            }
+        };
+        var abObj = srcObj;
+        var tarObj = deepClone(srcObj);
+
+        srcObj.a = 2;
+        srcObj.b.b1[0] = "Hello";
+
+        console.log(abObj.a);
+        console.log(abObj.b.b1[0]);
+
+        console.log(tarObj.a);      // 1
+        console.log(tarObj.b.b1[0]);    // "hello"
+    </script>
+</body>
+</html>
